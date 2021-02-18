@@ -13,6 +13,7 @@ class Battle < Sinatra::Base
   post '/names' do
     session[:name1] = params[:name1]
     session[:name2] = params[:name2]
+    session[:p1attack] = false
     redirect to('/play')
   end
 
@@ -20,6 +21,12 @@ class Battle < Sinatra::Base
     @name1 = session[:name1]
     @name2 = session[:name2]
     erb(:play)
+    #@p1attack = false
+  end
+
+  post '/p1attack' do
+    session[:p1attack] = true
+    redirect to('/play')
   end
 
   # start the server if ruby file executed directly
