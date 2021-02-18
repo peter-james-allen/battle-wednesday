@@ -1,4 +1,3 @@
-require 'app'
 feature "testing infrastructure" do
   scenario "runs app and check page content" do
     visit '/'
