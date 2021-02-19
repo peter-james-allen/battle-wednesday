@@ -3,6 +3,6 @@
 <form action="/p1attack" method="post">
   <input type="submit" value="Attack!">
 </form>
-<% if session[:p1attack] %>
+<% if @p1attacks %>
 <p> <%= @name1 %> attacked <%= @name2 %>!</p>
 <% end %>
