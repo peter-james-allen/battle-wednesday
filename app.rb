@@ -1,6 +1,7 @@
 # in app.rb
 
 require 'sinatra/base'
+require './lib/player.rb'
 
 class Battle < Sinatra::Base
 
@@ -11,15 +12,19 @@ class Battle < Sinatra::Base
   end
 
   post '/names' do
-    session[:name1] = params[:name1]
-    session[:name2] = params[:name2]
+
+    $player1 = Player.new(params[:name1])
+    $player2 = Player.new(params[:name2])
+
+    # session[:name1] = params[:name1]
+    # session[:name2] = params[:name2]
     session[:p1attack] = false
     redirect to('/play')
   end
 
   get '/play' do
-    @name1 = session[:name1]
-    @name2 = session[:name2]
+    @name1 = $player1.player_name
+    @name2 = $player2.player_name
     erb(:play)
     #@p1attack = false
   end
@@ -32,27 +37,3 @@ class Battle < Sinatra::Base
   # start the server if ruby file executed directly
   run! if app_file == $0
 end
-#
-# get '/secret' do
-#   "Shhhhhhhhhhhh I'm hunting duckies"
-# end
-#
-# get '/random-cat' do
-#   @catname = %w(Amigo Misty Almond).sample
-#   erb(:index)
-# end
-#
-# post '/named-cat' do
-#   p params
-#   @catname = params[:name]
-#   erb(:index)
-# end
-#
-# get '/post-cat' do
-#   # p params
-#   # @catname = params[:name]
-#   erb(:forms)
-# end
-#
-
-#test comment
