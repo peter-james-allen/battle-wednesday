@@ -25,12 +25,15 @@ class Battle < Sinatra::Base
   get '/play' do
     @name1 = $player1.player_name
     @name2 = $player2.player_name
+    @hp1 = $player1.hp
+    @hp2 = $player2.hp
     erb(:play)
     #@p1attack = false
   end
 
   post '/p1attack' do
     session[:p1attack] = true
+    $player2.is_attacked
     redirect to('/play')
   end
 
