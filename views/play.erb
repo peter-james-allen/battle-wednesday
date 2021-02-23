@@ -1,8 +1,15 @@
-<h1>This fight is between <%= @name1 %> and <%= @name2 %></h1>
-<p><%= @name2 %> HP: <%= @hp2 %>/100</p>
+<h1>This fight is between <%= @game.player1.player_name %> and <%= @game.player2.player_name %></h1>
+<p><%= @game.player1.player_name %> HP: <%= @game.player1.hp %>/100</p>
 <form action="/p1attack" method="post">
-  <input type="submit" value="Attack!">
+  <input type="submit" value="Player 1 Attack!">
 </form>
-<% if @p1attacks %>
-<p> <%= @name1 %> attacked <%= @name2 %>!</p>
+<p><%= @game.player2.player_name %> HP: <%= @game.player2.hp %>/100</p>
+<form action="/p2attack" method="post">
+  <input type="submit" value="Player 2 Attack!">
+</form>
+<% if @game.p1attacks %>
+<p> <%= @game.player1.player_name %> attacked <%= @game.player2.player_name %>!</p>
+<% end %>
+<% if @game.p2attacks %>
+<p> <%= @game.player2.player_name %> attacked <%= @game.player1.player_name %>!</p>
 <% end %>

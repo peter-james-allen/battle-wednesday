@@ -21,13 +21,13 @@ feature "displays hit points" do
 feature "attacking move" do
   scenario "when attack is clicked, attack message appears" do
     sign_in_and_play
-    click_button("Attack!")
+    click_button("Player 1 Attack!")
     expect(page).to have_content "Ian attacked Joey!"
   end
 
   scenario "player 1 attacks player 2 reducing player 2 HP by 10" do
     sign_in_and_play
-    click_button("Attack!")
+    click_button("Player 1 Attack!")
     expect(page).to have_content "Joey HP: 90/100"
   end
 end
